@@ -6,11 +6,15 @@ router.get('/', (req, res)=>{
 });
 
 router.get('/posts', (req, res)=>{
-    res.send("<h1>Página de listagem dos posts</h1>");
+    
 });
 
 router.get('/categorias', (req, res)=>{
-    res.send("<h1>Página de Categorias</h1>");
+    res.render("admin/categorias");
 });
+
+router.get('/categorias/add', (req, res)=>{
+    res.render("admin/addcategorias");
+})
 
 module.exports = router;

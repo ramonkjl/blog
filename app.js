@@ -18,7 +18,7 @@ const path = require('path');
 
     //MONGOOSE
 
-    //PUBLIC
+    //DIRETÓRIO PUBLIC
     app.use(express.static(path.join(__dirname, 'public')));
 
 
