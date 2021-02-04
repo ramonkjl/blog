@@ -10,8 +10,13 @@
             <small>{{slug}}</small><br/>
             <small>Data de criação: {{date}}</small><br/>
             <a href="/admin/categorias/edit/{{_id}}" ><button  class="btn btn-success mt-4">Editar Categria</button></a>
+           
+            <form action="/admin/categoria/deletar" method="POST">
+                <input type="hidden" name="id" value="{{_id}}"/>
+                <button type="submit" class="btn btn-danger mt-2">Deleter</button>
+            </form>
         </div>
     </div>
-{{!-- {{else}} --}}
+{{else}}
 
 {{/each}}

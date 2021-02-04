@@ -51,6 +51,7 @@ router.post('/categorias/edit', (req, res)=>{
         res.redirect('/admin/categorias', err)
     })
 })
+
 //Rota de post
 //Aqui uso uma async
 router.post('/categorias/nova', (req, res) => {
@@ -86,8 +87,16 @@ router.post('/categorias/nova', (req, res) => {
         }
         salvar();
     }
+})
 
-
-
+//Delete
+router.post('/categoria/deletar', (req, res)=>{
+    Categoria.deleteOne({_id: req.body.id}).then(()=>{
+        req.flash("success_msg", "Categoria deletada")
+        res.redirect('/admin/categorias')
+    }).catch((err)=>{
+        req.flash("error_msg", "Falha ao tentar deletar")
+        res.redirect('/admin/categorias')
+    })
 })
 module.exports = router
