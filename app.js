@@ -49,6 +49,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //ROTAS
+app.get('/', (req, res)=>{
+    res.render('index')
+})
+
 app.use('/admin', admin);
 
 //OUTROS
