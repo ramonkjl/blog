@@ -178,4 +178,18 @@ router.post('/postagem/edit', (req, res)=>{
         res.redirect('/admin/postagens')
     })
 })
+
+//Delete feito com rota "GET"
+router.get('/postagem/delete/:id', (req, res)=>{
+    Postagem.deleteOne({_id: req.params.id})
+        .then(()=>{
+            req.flash("success_msg", "Deleção feita!")
+            res.redirect('/admin/postagens')
+        })
+        .catch((err)=>{
+            req.flash("error_msg", "Falha na tentativa de deletar")
+            res.redirect('/admin/postagens')
+        })
+})
+
 module.exports = router
