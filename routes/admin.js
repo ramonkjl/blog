@@ -27,7 +27,7 @@ router.get('/categorias/add', (req, res) => {
 })
 
 
-//ROTA DE PU
+//ROTA DE PUT
 router.get('/categorias/edit/:id', (req, res)=>{
     //const id = req.params.id
     Categoria.findOne({_id: req.params.id}).lean()
@@ -40,6 +40,17 @@ router.get('/categorias/edit/:id', (req, res)=>{
     })
 })
 
+//SALVANDO EDIÇÃO
+router.post('/categorias/edit', (req, res)=>{
+
+    Categoria.where({_id: req.body.id}).updateOne({nome: req.body.nome, slug: req.body.slug}).then(()=>{
+        req.flash("success_msg", "Atualizado com Sucesso")
+        res.redirect('/admin/categorias')
+    }).catch((err)=>{
+        req.flash("error_msg", "falha ao tentar atualização")
+        res.redirect('/admin/categorias', err)
+    })
+})
 //Rota de post
 //Aqui uso uma async
 router.post('/categorias/nova', (req, res) => {

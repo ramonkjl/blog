@@ -37,7 +37,8 @@ app.set('view engine', 'handlebars');
 //MONGOOSE
 mongoose.connect('mongodb+srv://ramon_teste:32251049@ramon.lxiex.mongodb.net/ramon_teste_mongo?retryWrites=true&w=majority', {
      useNewUrlParser: true, 
-     useUnifiedTopology: true })
+     useUnifiedTopology: true,
+    useFindAndModify: false })
      .then(() => console.log("Conectado ao mongo"))
     .catch((err) => console.log("Erro ao se conectar", err))
 
