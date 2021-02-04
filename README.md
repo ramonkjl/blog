@@ -5,6 +5,8 @@ blog feito com:
     -Body-Parser
     -Mogoose/MongoDB
     -Bootstrap
+    -Express-Session
+    -Connect-Flash
 
 # Express
 - Para controle de rotas e abertura do servidor.

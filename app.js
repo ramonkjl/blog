@@ -5,9 +5,27 @@ const mongoose = require('mongoose');
 const app = express();
 const admin = require('./routes/admin');
 const path = require('path');
+const session  = require('express-session');
+const flash = require('connect-flash');
 
 
 //COFIGURAÇÕES
+//SESSION
+app.use(session({
+    secret: "cursodenode",
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())//FLASH
+//MIDDLEWERE
+app.use((req, res, next)=>{
+    res.locals.success_msg = req.flash("success_msg") //variavel global acessada em qualquer pagina
+    res.locals.error_msg = req.flash("error_msg")
+    next();
+})
+
+
+
 //BODY-PARSER
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,11 +44,7 @@ mongoose.connect('mongodb+srv://ramon_teste:32251049@ramon.lxiex.mongodb.net/ram
 //DIRETÓRIO PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));
 
-//MIDDLEWERE
-app.use((req, res, next)=>{
-    console.log("OI EU SOU UM MIDDLEWERE")
-    next();
-})
+
 
 
 //ROTAS
