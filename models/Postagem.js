@@ -10,7 +10,7 @@ const Postagem = new Schema({
         type: String,
         required: true
     },
-    decricao:{
+    descricao:{
         type: String,
         required: false
     },
@@ -22,10 +22,10 @@ const Postagem = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Categoria",
         required: true,
-        data:{
-            type: Date,
-            default: Date.now()
-        }
+    },
+    data:{
+        type: Date,
+        default: Date.now()
     }
 })
 
