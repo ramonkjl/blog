@@ -9,6 +9,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 require('./models/Postagem');
 const Postagem = mongoose.model("Postagem");
+require('./models/Categoria');
+const Categoria = mongoose.model("Categoria");
 
 
 //COFIGURAÇÕES
@@ -63,7 +65,7 @@ app.get('/', (req, res) => {
             res.redirect('/404');
         })
 })
-
+//===PAGÍNA DE POST ESPECÍFICO
 app.get('/postagem/:slug', (req, res)=>{
     Postagem.findOne({slug: req.params.slug}).lean()
     .then((postagem)=>{
@@ -79,6 +81,35 @@ app.get('/postagem/:slug', (req, res)=>{
         req.flash("error_msg", "Houve um erro interno")
         res.redirect('/')
     })
+})
+
+//===PÁGINA DE CATEGORIAS=======
+app.get('/categorias', (req, res)=>{
+    Categoria.find().lean().then((categorias)=>{
+
+        if(categorias){
+            res.render('categorias/index', {categorias: categorias});
+        }
+    }).catch((err)=>{
+        req.flash("error_msg", "Houve um erro ao tentar carregar categorias")
+        res.redirect('/')
+    })
+})
+
+app.get('/categorias/:slug', (req, res)=>{
+    Categoria.findOne({slug: req.params.slug}).lean()
+        .then((categoria)=>{
+            Postagem.find({categoria: categoria._id}).lean()
+            .then((postagens)=>{
+                res.render('categorias/posts', {postagens: postagens, categoria: categoria})
+            }).catch((err)=>{
+
+            })
+
+        }).catch((err)=>{
+            req.flash("error_msg", "Essa categorias não existe")
+            res.redirect('/')
+        })
 })
 
 app.get('/404', (req, res) => { res.send("Error 404") })
