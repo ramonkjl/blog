@@ -1,14 +1,14 @@
 # BLOG
 blog feito com:
-    -Express
-    -Handlebars
-    -Body-Parser
-    -Mogoose/MongoDB
-    -Bootstrap
-    -Express-Session
-    -Connect-Flash
-    -Bcrypt.js
-    -Passport
+-    Express
+-    Handlebars
+-    Body-Parser
+-    Mogoose/MongoDB
+-    Bootstrap
+-    Express-Session
+-    Connect-Flash
+-    Bcrypt.js
+-    Passport
 
 ## Express
 - Para controle de rotas e abertura do servidor.

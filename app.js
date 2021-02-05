@@ -20,7 +20,7 @@ require('./config/auth')(passport)
 //Configurações
 //Sessção
 app.use(session({
-    secret:"CursoDeNode",
+    secret:"NodeJs",
     resave: true,
     saveUninitialized: true
 }))
