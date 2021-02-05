@@ -34,6 +34,7 @@ app.use((req, res, next)=>{
     res.locals.success_msg = req.flash("success_msg")
     res.locals.error_msg = req.flash("error_msg")
     res.locals.error = req.flash("error")
+    res.locals.user = req.user || null;
     next();
 })
 // BODY PARSER
@@ -52,10 +53,10 @@ mongoose.connect("mongodb://localhost/blogapp").then(()=>{
 // Public
     app.use(express.static(path.join(__dirname, "public")))
 
-    app.use((req, res, next)=>{
+/*     app.use((req, res, next)=>{
         console.log("OI EU SOU UM MIDWARE")
         next();
-    })
+    }) */
 //Rotas
 app.get('/', (req, res) =>{
     Postagem.find().lean().populate("categoria").sort({data: "desc"}).then((postagens) => {
@@ -120,6 +121,7 @@ app.get("/404", (req, res) => {
 
 app.use('/admin', admin)
 app.use("/usuarios", usuarios)
+//app.use(admin, eAdmin, admin);
 
 //Outros
 const PORT = 8081
