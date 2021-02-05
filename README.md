@@ -7,18 +7,26 @@ blog feito com:
     -Bootstrap
     -Express-Session
     -Connect-Flash
+    -Bcrypt.js
+    -Passport
 
-# Express
+## Express
 - Para controle de rotas e abertura do servidor.
 
-# Handlebars
+## Handlebars
 - Para criar páginas templates.
 
-# Body-Parser
+## Body-Parser
 - Para auxilio nas requisições HTTP.
 
-# Mongoose
+## Mongoose
 - Para armazenamento dos dados no MongoDB Atlas.
 
-# Bootstrap
+## Bootstrap
 - Para criação de páginas totalmente responsivas.
+
+## Bcrypt.js
+- Para hashear as senhas.
+
+## Passport
+- Para fazer a autenticação de usuário.

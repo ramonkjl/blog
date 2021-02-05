@@ -11,6 +11,9 @@ require('./models/Postagem');
 const Postagem = mongoose.model("Postagem");
 require('./models/Categoria');
 const Categoria = mongoose.model("Categoria");
+const usuarios = require('./routes/usuario');
+const passport = require('passport');
+require('./config/auth')(passport)
 
 
 //COFIGURAÇÕES
@@ -20,6 +23,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())//FLASH
 //MIDDLEWERE
 app.use((req, res, next) => {
@@ -115,6 +120,8 @@ app.get('/categorias/:slug', (req, res)=>{
 app.get('/404', (req, res) => { res.send("Error 404") })
 
 app.use('/admin', admin);
+
+app.use('/usuarios', usuarios);
 
 //OUTROS
 const PORT = 8081;
