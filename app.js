@@ -13,6 +13,7 @@ const Postagem = mongoose.model("postagens")
 require("./models/Categoria")
 const Categoria = mongoose.model("categorias")
 const usuarios= require("./routes/usuario")
+const db = require('./config/db');
 
 const passport = require('passport');
 require('./config/auth')(passport)
@@ -45,7 +46,7 @@ app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
 //Mongose
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/blogapp").then(()=>{
+mongoose.connect(db.MONGODB_URI).then(()=>{
     console.log("Conectado ao mongo")
 }).catch((err)=>{
     console.log("Erro ao se conectar" + err) 
@@ -124,7 +125,7 @@ app.use("/usuarios", usuarios)
 //app.use(admin, eAdmin, admin);
 
 //Outros
-const PORT = 8081
+const PORT = process.env.PORT || 8081
 app.listen(PORT, ()=>{
     console.log("Servidor Rodando")
 })
