@@ -31,4 +31,4 @@ blog feito com:
 ## Passport
 - Para fazer a autenticação de usuário.
 # Farei o deploy na Heroku.
-- - Logo adaptarei todo o blog para Reac.js/Next.js e hospedarei na Vercel
+- - Logo adaptarei todo o blog para React.js/Next.js e o hospedarei na Vercel
